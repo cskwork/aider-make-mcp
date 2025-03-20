@@ -1,33 +1,50 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Dict, Any
+from typing import Dict, Any, Optional
+from enum import Enum
 
 app = FastAPI()
 
+class ContextType(str, Enum):
+    TEXT = "text"
+    CODE = "code"
+    DATA = "data"
+
 class ContextRequest(BaseModel):
     query: str
-    context: Dict[str, Any] = {}
+    context_type: ContextType
+    context: Optional[Dict[str, Any]] = None
+    metadata: Optional[Dict[str, Any]] = None
 
 class ContextResponse(BaseModel):
     response: str
-    metadata: Dict[str, Any] = {}
+    context_type: ContextType
+    metadata: Dict[str, Any]
+    error: Optional[str] = None
 
 @app.post("/context", response_model=ContextResponse)
 async def handle_context(request: ContextRequest):
     """
-    Handle MCP context requests and return relevant information
+    Handle MCP context requests according to the official specification
     """
     try:
-        # Basic implementation that just returns a hello world response
+        # Basic implementation that returns a formatted response
         return ContextResponse(
-            response=f"Hello World! You asked: {request.query}",
+            response=f"Processed {request.context_type} query: {request.query}",
+            context_type=request.context_type,
             metadata={
-                "source": "example_mcp_server",
-                "context_used": request.context
+                "source": "mcp_server",
+                "context_used": request.context or {},
+                **request.metadata or {}
             }
         )
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        return ContextResponse(
+            response="",
+            context_type=request.context_type,
+            metadata={},
+            error=str(e)
+        )
 
 if __name__ == "__main__":
     import uvicorn
