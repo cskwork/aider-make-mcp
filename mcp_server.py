@@ -1,9 +1,18 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 from typing import Dict, Any, Optional
 from enum import Enum
 
-app = FastAPI()
+app = FastAPI(
+    title="MCP Server",
+    description="Model Context Protocol Server for Claude Desktop integration",
+    version="0.1.0"
+)
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint required by Claude Desktop"""
+    return {"status": "ok"}
 
 class ContextType(str, Enum):
     TEXT = "text"

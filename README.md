@@ -24,6 +24,22 @@ pip install fastapi uvicorn
 python mcp_server.py
 ```
 
+## Claude Desktop Integration
+
+1. Start the MCP server
+2. Open Claude Desktop app
+3. Go to Settings > Integrations > MCP Servers
+4. Add a new server with:
+   - Name: Local MCP Server
+   - URL: http://localhost:8000
+5. Test the connection using the "Test Connection" button
+6. Once connected, you can use the MCP server in your conversations by prefixing queries with `@mcp`
+
+Example conversation:
+```
+@mcp What can you tell me about this code?
+```
+
 ## API Endpoints
 - POST /context
   - Request: 
