@@ -1,19 +1,21 @@
-# MCP Server Project
+# Model Context Protocol (MCP) Server
 
-A scalable Minecraft Protocol (MCP) server implementation for creating various MCP tools.
+A basic implementation of Anthropic's Model Context Protocol for connecting AI systems to data sources.
 
 ## Features
-- Basic MCP server implementation
-- Hello World response
-- Scalable architecture for future tools
+- REST API implementation of MCP
+- Context-aware request handling
+- Extensible architecture for future integrations
+- FastAPI-based server
 
 ## Requirements
 - Python 3.8+
-- mcstatus library
+- FastAPI
+- Uvicorn
 
 ## Installation
 ```bash
-pip install mcstatus
+pip install fastapi uvicorn
 ```
 
 ## Running the Server
@@ -21,8 +23,13 @@ pip install mcstatus
 python mcp_server.py
 ```
 
+## API Endpoints
+- POST /context
+  - Request: { "query": "your query", "context": {} }
+  - Response: { "response": "Hello World! You asked: your query", "metadata": {} }
+
 ## Future Plans
-- Add authentication system
-- Implement command handling
-- Add plugin system for custom tools
-- Support for multiple Minecraft versions
+- Add authentication and security
+- Implement data source integrations
+- Add support for streaming responses
+- Implement context caching
