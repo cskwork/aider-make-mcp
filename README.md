@@ -24,20 +24,64 @@ pip install fastapi uvicorn
 python mcp_server.py
 ```
 
-## Claude Desktop Integration
+## Claude Desktop Integration Guide
 
-1. Start the MCP server
-2. Open Claude Desktop app
-3. Go to Settings > Integrations > MCP Servers
-4. Add a new server with:
-   - Name: Local MCP Server
-   - URL: http://localhost:8000
-5. Test the connection using the "Test Connection" button
-6. Once connected, you can use the MCP server in your conversations by prefixing queries with `@mcp`
+### Prerequisites
+1. Claude Desktop app installed (version 1.2.0 or later)
+2. Python 3.8+ installed
+3. MCP server running locally
 
-Example conversation:
+### Step-by-Step Setup
+
+1. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Start the MCP Server**
+   ```bash
+   python mcp_server.py
+   ```
+   The server will start on http://localhost:8000
+
+3. **Configure Claude Desktop**
+   - Open Claude Desktop app
+   - Go to Settings > Integrations > MCP Servers
+   - Click "Add New Server"
+   - Enter the following details:
+     - Name: Local MCP Server
+     - URL: http://localhost:8000
+     - Description: Local MCP server for testing
+   - Click "Save"
+
+4. **Test the Connection**
+   - In the MCP Servers list, click the "Test Connection" button next to your server
+   - You should see a green checkmark if the connection is successful
+
+5. **Using MCP in Conversations**
+   - Start a new conversation in Claude Desktop
+   - Use the `@mcp` prefix to route queries to your MCP server
+   - Example queries:
+     ```
+     @mcp Analyze this code snippet: [your code here]
+     @mcp What can you tell me about this document?
+     @mcp Process this data: [your data here]
+     ```
+
+### Troubleshooting
+- **Connection Failed**: Ensure the MCP server is running and accessible
+- **Timeout Errors**: Check your network settings and firewall rules
+- **Invalid Responses**: Verify the server logs for any errors
+
+### Example Conversation Flow
 ```
-@mcp What can you tell me about this code?
+User: @mcp What can you tell me about this code?
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n-1)
+
+Claude: [MCP Response] Processed code query: This appears to be a recursive implementation of the factorial function...
 ```
 
 ## API Endpoints
