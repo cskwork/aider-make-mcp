@@ -3,12 +3,14 @@
 An implementation of Anthropic's Model Context Protocol following the official specification from [https://modelcontextprotocol.io](https://modelcontextprotocol.io)
 
 This server implements the MCP v1.0 specification and provides:
-- Document context processing
-- Code context processing
-- Data context processing
-- Health check endpoint
-- Error handling
-- Citation support
+
+## Core Features
+- Document context processing with citation support
+- Code context processing with language-specific handling
+- Data context processing with structured results
+- Health check endpoint with capabilities reporting
+- Error handling and validation
+- Support for context-specific options
 
 ## Features
 - REST API implementation of MCP
