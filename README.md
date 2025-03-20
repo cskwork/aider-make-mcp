@@ -36,30 +36,32 @@ python mcp_server.py
 
 ## Client Configuration
 
-To configure an MCP server in your client application, add the following to your configuration:
+To configure this MCP server in your client application, add the following to your configuration:
 
 ```json
 {
     "mcpServers": {
-        "weather": {
-            "command": "uv",
+        "mcp_server": {
+            "command": "python",
             "args": [
-                "--directory",
-                "/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather",
-                "run",
-                "weather.py"
-            ]
+                "mcp_server.py"
+            ],
+            "env": {
+                "MCP_PORT": "8000",
+                "MCP_HOST": "0.0.0.0"
+            }
         }
     }
 }
 ```
 
 ### Key Configuration Options:
-- `command`: The command to run the server (e.g., "uv" for uvicorn)
+- `command`: The Python interpreter command
 - `args`: Arguments to pass to the command
-  - `--directory`: Path to the server's parent directory
-  - `run`: Command to start the server
-  - Server filename (e.g., "weather.py")
+  - Server filename (e.g., "mcp_server.py")
+- `env`: Environment variables for server configuration
+  - `MCP_PORT`: Port to run the server on (default: 8000)
+  - `MCP_HOST`: Host to bind the server to (default: 0.0.0.0)
 
 ## Claude Desktop Integration Guide
 
