@@ -1,6 +1,6 @@
 # Model Context Protocol (MCP) Server
 
-An implementation of Anthropic's Model Context Protocol following the official specification.
+An implementation of Anthropic's Model Context Protocol following the official specification from https://modelcontextprotocol.io
 
 ## Features
 - REST API implementation of MCP
