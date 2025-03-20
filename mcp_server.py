@@ -35,7 +35,7 @@ async def handle_context(request: ContextRequest):
             metadata={
                 "source": "mcp_server",
                 "context_used": request.context or {},
-                **request.metadata or {}
+                **(request.metadata if request.metadata else {})
             }
         )
     except Exception as e:
