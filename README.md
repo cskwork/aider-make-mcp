@@ -1,6 +1,14 @@
 # Model Context Protocol (MCP) Server
 
-An implementation of Anthropic's Model Context Protocol following the official specification from https://modelcontextprotocol.io
+An implementation of Anthropic's Model Context Protocol following the official specification from [https://modelcontextprotocol.io](https://modelcontextprotocol.io)
+
+This server implements the MCP v1.0 specification and provides:
+- Document context processing
+- Code context processing
+- Data context processing
+- Health check endpoint
+- Error handling
+- Citation support
 
 ## Features
 - REST API implementation of MCP
