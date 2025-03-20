@@ -34,12 +34,40 @@ pip install fastapi uvicorn
 python mcp_server.py
 ```
 
+## Client Configuration
+
+To configure an MCP server in your client application, add the following to your configuration:
+
+```json
+{
+    "mcpServers": {
+        "weather": {
+            "command": "uv",
+            "args": [
+                "--directory",
+                "/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather",
+                "run",
+                "weather.py"
+            ]
+        }
+    }
+}
+```
+
+### Key Configuration Options:
+- `command`: The command to run the server (e.g., "uv" for uvicorn)
+- `args`: Arguments to pass to the command
+  - `--directory`: Path to the server's parent directory
+  - `run`: Command to start the server
+  - Server filename (e.g., "weather.py")
+
 ## Claude Desktop Integration Guide
 
 ### Prerequisites
 1. Claude Desktop app installed (version 1.2.0 or later)
 2. Python 3.8+ installed
 3. MCP server running locally
+4. Proper client configuration as shown above
 
 ### Step-by-Step Setup
 
